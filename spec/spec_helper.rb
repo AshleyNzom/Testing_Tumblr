@@ -32,18 +32,17 @@ end
 
 
 def logged_in?
-      @driver.button(class:"compose-button").exists?
+  @driver.button(class:"compose-button").exists?
 end
 
 def logout
  if logged_in? 
-  
+
   #Redirects browser to logout page  
-    @driver.goto"#{@url}/logout" 
+  @driver.goto"#{@url}/logout" 
 
  else puts "already logged out"
-end
-
+ end
 
 end
 
