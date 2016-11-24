@@ -1,9 +1,7 @@
 require 'watir'
 require 'pry'
 
-  
-@driver  = Watir::Browser.new 
-@url = "http://tumblr.com"
+
 
 def delete_post
  
@@ -15,37 +13,36 @@ end
 
 def login
 
-  if logged_in?
-    puts "Already logged in"
-  else
-  @driver.goto("#{@url}")
-  @driver.button(id:"signup_login_button").click
-  @driver.text_field(id:"signup_determine_email").set("testingcheck@mailinator.com\n")
-  @driver.button(id:"login-signin").click
-  @driver.text_field(id:"login-passwd").send_keys("Link1234!\n")
-  sleep(1)
-  @driver.wait()
-end
+      if logged_in?
+        puts "Already logged in"
+      else
+      @driver.goto("#{@url}")
+      
+      @driver.button(id:"signup_login_button").click
+      
+      @driver.text_field(id:"signup_determine_email").set("testingcheck@mailinator.com\n")
+      
+      @driver.button(id:"login-signin").click
+      
+      @driver.text_field(id:"login-passwd").send_keys("Link1234!\n")
+      
+    end
 
 end
+
 
 def logged_in?
-  @driver.button(class:"compose-button").exists?
+      @driver.button(class:"compose-button").exists?
 end
 
 def logout
-
-
-  if logged_in? 
-     @driver.goto"#{@url}/logout"
-  else puts "already logged out"
-
+ if logged_in? 
   
-  end
+  #Redirects browser to logout page  
+    @driver.goto"#{@url}/logout" 
 
-
-
-
+ else puts "already logged out"
+end
 
 
 end
