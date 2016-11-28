@@ -44,7 +44,8 @@ it "should be able to reblog a post" do
   redirect_user_to 'dashboard'
      
   @browser.as(class: 'reblog')[2].click
-  @browser.div(class:'editor-richtext').send_keys'reblog'
+  id = SecureRandom.uuid
+  @browser.div(class:'editor-richtext').send_keys('reblog ' + id)
      
   page_delay(3)
     
@@ -53,7 +54,7 @@ it "should be able to reblog a post" do
   page_delay(2)
      
   redirect_user_to 'blog'
-  expect(@browser.divs(class:'reblog-content')[1].text).to eq 'reblog'
+  expect(@browser.divs(class:'reblog-content')[1].text).to include id
       
   delete_post
     
